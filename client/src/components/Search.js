@@ -1,3 +1,4 @@
+// client/src/components/Search.js
 import React from "react";
 
 function Search({ search, onSearchChange }) {

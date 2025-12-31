@@ -1,20 +1,19 @@
+// client/src/components/Message.js
 import React, { useState } from "react";
 import EditMessage from "./EditMessage";
 
 function Message({ message, currentUser, onMessageDelete, onUpdateMessage }) {
   const [isEditing, setIsEditing] = useState(false);
-
   const { id, username, body, created_at: createdAt } = message;
-
+  
+  const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5555";
   const timestamp = new Date(createdAt).toLocaleTimeString();
-
   const isCurrentUser = currentUser.username === username;
 
   function handleDeleteClick() {
-    fetch(`http://127.0.0.1:5555/messages/${id}`, {
+    fetch(`${API_URL}/messages/${id}`, {
       method: "DELETE",
     });
-
     onMessageDelete(id);
   }
 
@@ -39,14 +38,10 @@ function Message({ message, currentUser, onMessageDelete, onUpdateMessage }) {
       {isCurrentUser ? (
         <div className="actions">
           <button onClick={() => setIsEditing((isEditing) => !isEditing)}>
-            <span role="img" aria-label="edit">
-              ✏️
-            </span>
+            <span role="img" aria-label="edit">✏️</span>
           </button>
           <button onClick={handleDeleteClick}>
-            <span role="img" aria-label="delete">
-              🗑
-            </span>
+            <span role="img" aria-label="delete">🗑</span>
           </button>
         </div>
       ) : null}

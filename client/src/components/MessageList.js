@@ -1,3 +1,4 @@
+// client/src/components/MessageList.js
 import React from "react";
 import Message from "./Message";
 

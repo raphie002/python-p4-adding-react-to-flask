@@ -1,12 +1,14 @@
+// client/src/components/NewMessage.js
 import React, { useState } from "react";
 
 function NewMessage({ currentUser, onAddMessage }) {
   const [body, setBody] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:5555";
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("http://127.0.0.1:5555/messages", {
+    fetch(`${API_URL}/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

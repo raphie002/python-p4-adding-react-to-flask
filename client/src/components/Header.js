@@ -1,3 +1,4 @@
+// client/src/components/Header.js
 import React from "react";
 
 function Header({ isDarkMode, onToggleDarkMode }) {
